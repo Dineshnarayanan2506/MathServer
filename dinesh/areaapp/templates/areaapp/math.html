@@ -1,0 +1,17 @@
+<html>
+    <head><title>calculator</title></head>
+    <body>
+        <h1 align="center"> Dinesh 26019310</h1>
+        <h2 align="center"> GST Calculator</h2>
+        <form method="POST">{%csrf_token%}<br><br>
+            <label>Price </label>
+            <input type="text"  name="price" value="{{P1}}"><br><br>
+            <label>GST </label>
+            <input type="text"  name="gst" value="{{G1}}"><br><br>
+            <input type="submit" value="Calculate"><br><br>
+            <label>Bill Amount</label>
+            <label>Bill Amount : {{bill1}}</label>
+
+        </form>
+    </body>
+</html>
