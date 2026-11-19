@@ -1,17 +1,31 @@
 <html>
-    <head><title>calculator</title></head>
+    <head>
+        <title>churn rate</title>
+    
+    </head>
     <body>
-        <h1 align="center"> Dinesh 26019310</h1>
-        <h2 align="center"> GST Calculator</h2>
-        <form method="POST">{%csrf_token%}<br><br>
-            <label>Price </label>
-            <input type="text"  name="price" value="{{P1}}"><br><br>
-            <label>GST </label>
-            <input type="text"  name="gst" value="{{G1}}"><br><br>
+        
+        <h1 align="center">Churn Rate Calculator</h1>
+        <h2 align="center">Dinesh N(26019310)</h2>
+
+        <form method="POST">
+            {%csrf_token%}<br>
+
+            
+            <label>Lost customer:</label>
+            <input type="text" name="CustLost" value="{{lost}}" ><br><br>
+            <label>Initial customer:</label>
+            <input type="text" name="InitCust" value="{{init}}"><br><br>
             <input type="submit" value="Calculate"><br><br>
-            <label>Bill Amount</label>
-            <label>Bill Amount : {{bill1}}</label>
+
+
+            <label>Churn Rate:</label>
+            <input type="text" name="ChurnRate" value="{{ChurnRate}}">
+
+
+
+
 
         </form>
     </body>
-</html>
+</html> 

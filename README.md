@@ -44,35 +44,51 @@ Publish the website in Localhost.
 ## PROGRAM:
 ```
 math.html
+
 <html>
-    <head><title>calculator</title></head>
+    <head>
+        <title>churn rate</title>
+    
+    </head>
     <body>
-        <h1 align="center"> Dinesh 26019310</h1>
-        <h2 align="center"> GST Calculator</h2>
-        <form method="POST">{%csrf_token%}<br><br>
-            <label>Price </label>
-            <input type="text"  name="price" value="{{P1}}"><br><br>
-            <label>GST </label>
-            <input type="text"  name="gst" value="{{G1}}"><br><br>
+        
+        <h1 align="center">Churn Rate Calculator</h1>
+        <h2 align="center">Dinesh N(26019310)</h2>
+
+        <form method="POST">
+            {%csrf_token%}<br>
+
+            
+            <label>Lost customer:</label>
+            <input type="text" name="CustLost" value="{{lost}}" ><br><br>
+            <label>Initial customer:</label>
+            <input type="text" name="InitCust" value="{{init}}"><br><br>
             <input type="submit" value="Calculate"><br><br>
-            <label>Bill Amount</label>
-            <label>Bill Amount : {{bill1}}</label>
+
+
+            <label>Churn Rate:</label>
+            <input type="text" name="ChurnRate" value="{{ChurnRate}}">
+
+
+
+
 
         </form>
     </body>
-</html>
+</html> 
 
 views.py
 
 from django.shortcuts import render
-def calculate(request):
-    P = float(request.POST.get('price', '0'))
-    G = float(request.POST.get('gst', '0'))
-    bill = P + (P * G / 100) if request.method == 'POST' else 0
-    print("Price : ",P)
-    print("GST : ",G)
-    print("Bill Amount : ",bill)
-    return render(request, 'areaapp/math.html',{ 'P1' : P, "G1" : G, 'bill1' : bill})
+
+def calculate_rate(request):
+    
+    lost=float(request.POST.get("CustLost",'0'))
+    init=float(request.POST.get("InitCust",'0'))
+    ChurnRate = (lost/init)*100 if request.method == 'POST' else 0
+    print(f"Lost Customer: {lost}numbers \n Initial Customer: {init}numbers \n Churn Rate: {ChurnRate}")
+    return render(request, "areaapp/math.html",{"init": init, "lost": lost, "ChurnRate": ChurnRate})
+
 
 urls.py
 
@@ -80,7 +96,8 @@ from django.contrib import admin
 from django.urls import path
 from areaapp import views
 
-urlpatterns = [path('', views.calculate, name='calculate')]
+
+urlpatterns = [path('', views.calculate_rate, name='calculate_rate'),]
 
 
 
@@ -89,10 +106,11 @@ urlpatterns = [path('', views.calculate, name='calculate')]
 
 
 ## OUTPUT - SERVER SIDE:
-![alt text](<server side ss.png>)
+![alt text](<Screenshot (18).png>)
 
 ## OUTPUT - WEBPAGE:
-![alt text](<homepage ss.png>)
+![alt text](<Screenshot (19).png>)
+
 
 ## RESULT:
 The the web page to calculate Churn Rate using server-side scripts is created successfully.
